@@ -3,12 +3,15 @@ function inicio(){
 }
 
 function registrar(){
-	var idusuario = sessionStorage.getItem("idcliente");
+    var idusuario = sessionStorage.getItem("idcliente")
+
+    var pedidos= JSON.parse(sessionStorage.getItem('pedidos'))
+
 	$.ajax({
         url: 'php/registrar.php',
         dataType: 'text',
         type: 'post',
-        data: { 'idusuario': idusuario },
+        data: { 'idusuario': idusuario, 'pedidos':pedidos },
         success: function( data ){
             if(data==1){
             	$("#resultado").html("Su pedido fue enviado!!");

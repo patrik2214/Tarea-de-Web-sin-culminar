@@ -6,6 +6,7 @@ $sql = "SELECT t.*, p.nombre FROM temp t, producto p
 		WHERE t.idproducto=p.idproducto AND t.idusuario='$idusuario'";
 $rs = $cnx->query($sql);
 $total=0;
+//ia no se utilizaria 
 while($reg=$rs->fetchObject()){
 	$total=$total+$reg->importe;
 	echo "<tr class='bg-warning text-dark'>

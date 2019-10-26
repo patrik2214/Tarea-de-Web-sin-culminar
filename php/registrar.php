@@ -1,6 +1,8 @@
 <?php
 require_once("conexion.php");
 $idusuario = $_POST['idusuario'];
+//enviamos la lista de pedidos
+$pedidos =$_POST['pedidos'];
 
 $resp=1;
 
@@ -18,14 +20,15 @@ try
 
 
 	
-	while($reg=$rs->fetchObject()){
+	foreach($pedidos as $pedido){
+		//
 		$b=$cnx->prepare("INSERT INTO detalle (idpedido, idproducto, cantidad, precio, importe)	VALUES(:idpedido,:idproducto,:cantidad,:precio,:importe)");
-		$total=$total+$reg->importe;
+		$total=$total+$pedido->importe;
 		$b->bindParam(":idpedido",$idpedido);
-		$b->bindParam(":idproducto",$reg->idproducto);
-		$b->bindParam(":cantidad",$reg->cantidad);
-		$b->bindParam(":precio",$reg->precio);
-		$b->bindParam(":importe",$reg->importe);
+		$b->bindParam(":idproducto",$pedido->idProducto);
+		$b->bindParam(":cantidad",$pedido->cantidadProducto);
+		$b->bindParam(":precio",$pedido->precioProducto);
+		$b->bindParam(":importe",$pedido->importe);
 		$b->execute();
 	}
 
