@@ -21,7 +21,7 @@ try
 
 	
 	foreach($pedidos as $pedido){
-		//
+		//traemos 
 		$b=$cnx->prepare("INSERT INTO detalle (idpedido, idproducto, cantidad, precio, importe)	VALUES(:idpedido,:idproducto,:cantidad,:precio,:importe)");
 		$total=$total+$pedido->importe;
 		$b->bindParam(":idpedido",$idpedido);
